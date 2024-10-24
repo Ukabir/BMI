@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-size: 24px;
+				font-family: sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: rgb(41, 255, 255);
+			}
+			.div {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 20px;
+				height: auto;
+				width: 35%;
+				padding: 40px 20px;
+				background-color: #fff;
+				border-radius: 10px;
+				box-shadow: 1px 1px 5px 1px #0000008f;
+			}
+			input {
+				width: 200px;
+				padding: 10px;
+			}
+			button {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+			<label for="">WEIGHT:</label><input type="text" id="weight">
+			<label for="">HEIGHT:</label><input type="text" id="height">
+			<button onclick="calc()">CALC</button>
+			<p id="screen"></p>
+		</div>
+	</body>
+	<script>
+		let scr = document.getElementById('screen')
+		function CalcBMI(weight, height) {
+			let BMI = weight / (height * height)
+			return BMI
+		}
+		function calc() {
+			let val1 = +(document.getElementById('weight').value).trim()
+			let val2 = +(document.getElementById('height').value).trim()
+			let answer = CalcBMI(val1, val2)
+			if (answer < 18.5) {
+				scr.innerHTML = `Ur BMI = ${answer} which means u're UNDERWEIGHT`
+			}else if(answer === 18.5 || answer <= 24.9) {
+				scr.innerHTML = `Ur BMI = ${answer} which means u're NORMAL WEIGHT`
+			}else if(answer === 25 || answer <= 29.9) {
+				scr.innerHTML = `Ur BMI = ${answer} which means u're OVERWEIGHT`
+			}else {
+				scr.innerHTML = `Ur BMI = ${answer} which means u're OBESE`
+			}
+			if (val1 == '' && val2 == '') {
+				scr.innerHTML = 'Input your weight and height'
+			}else if (val1 == '') {
+				scr.innerHTML = 'Input your weight'
+			}else if (val2 == '') {
+				scr.innerHTML = 'Input your height'
+			}
+		}
+	</script>
+</html>
